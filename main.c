@@ -8,14 +8,13 @@
 		DC-PTD3
 		DIN-PTD2
 		CLK-PTD1
-	\author J. Luis Pizano Escalante, luispizano@iteso.mx
-	\date	25/09/2018
+  	\Created on: 02/OCT/2018
+   	\Author:  Andrea Perez ie698276@iteso.mx & Fernanda Muñoz ie701371@iteso.mx
 	\todo
 	    The SPI device driver needs to be completed.
  */
 
  
-#include <SPI.h>
 #include <SPI.h>
 
 #include "GPIO.h"

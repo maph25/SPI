@@ -1,27 +1,27 @@
-
 /*
  * SPI.c
  *
- *  Created on: 03/10/2018
- *      Author: Fer Muñoz, Andrea Perez
+ *	\author Andrea Perez ie698276@iteso.mx & Fernanda Muñoz ie701371@iteso.mx
+ *  \date	02/OCT/2018
  */
 #include "SPI.h"
+#include "GPIO.h"
 
-
-static void SPI_enable_clk(spi_channel_t channel){
-	switch(channel)
-	{
-		case SPI_0:
-			SPI0->MCR &= ~SPI_MCR_MDIS_MASK;
-		break;
-		case SPI_1:
-			SPI1->MCR &= ~SPI_MCR_MDIS_MASK;
-		break;
-		case SPI_2:
-			SPI2->MCR &= ~SPI_MCR_MDIS_MASK;
-		break;
-	}
-
+/*Enables the clock*/
+static void SPI_enable_clock(spi_channel_t channel){
+	switch(channel){
+			case SPI_0:
+				SPI0->MCR &= ~(SPI_MCR_MDIS_MASK);
+				break;
+			case SPI_1:
+				SPI1->MCR &= ~(SPI_MCR_MDIS_MASK);
+				break;
+			case SPI_2:
+				SPI2->MCR &= ~(SPI_MCR_MDIS_MASK);
+				break;
+			default:
+				break;
+		}
 }
 
 static void SPI_clk(spi_channel_t channel){
@@ -39,6 +39,22 @@ static void SPI_clk(spi_channel_t channel){
 		return;
 	}
 }
+/*Activates clock gating*/
+/*static void SPI_clk(spi_channel_t channel){
+	switch(channel){
+		case SPI_0:
+			SPI0->MCR = (SPI0_CLOCK_GATING) &~(SPI_MCR_CONT_SCKE_MASK);
+			break;
+		case SPI_1:
+			SPI1->MCR = (SPI1_CLOCK_GATING) &~(SPI_MCR_CONT_SCKE_MASK);
+			break;
+		case SPI_2:
+			SPI2->MCR = (SPI2_CLOCK_GATING) &~(SPI_MCR_CONT_SCKE_MASK);
+			break;
+		default:
+			break;
+	}
+}*/
 
 static void SPI_set_master(spi_channel_t channel, spi_master_t masterOrSlave){
 
