@@ -95,7 +95,7 @@ typedef struct
 
 
 /*it enable the clock module of the SPI by modifying the MDIS bits*/
-static void SPI_enable(spi_channel_t);
+static void SPI_enable_clk(spi_channel_t);
 /*It activate the clock gating*/
 static void SPI_clk(spi_channel_t);
 /*It configure the SPI as a master or slave depending on the value of masterOrslave*/
