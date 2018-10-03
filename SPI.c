@@ -57,6 +57,19 @@ static void SPI_clk(spi_channel_t channel){
 }*/
 
 static void SPI_set_master(spi_channel_t channel, spi_master_t masterOrSlave){
+	switch(channel){
+		case SPI_0:
+			SPI0->MCR &= ~SPI_MCR_MSTR_MASK;
+			break;
+		case SPI_1:
+			SPI1->MCR &= ~SPI_MCR_MSTR_MASK;
+			break;
+		case SPI_2:
+			SPI2->MCR &= ~SPI_MCR_MSTR_MASK;
+			break;
+		default:
+			break;
+	}
 
 }
 
