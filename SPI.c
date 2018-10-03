@@ -1,3 +1,4 @@
+
 /*
  * SPI.c
  *
@@ -26,14 +27,16 @@ static void SPI_enable_clk(spi_channel_t channel){
 static void SPI_clk(spi_channel_t channel){
 	switch(channel){
 	case SPI_0:
-		SPI0->MCR = (SPI0_CLOCK_GATING) &~(SPI_MCR_CONT_SCKE_MASK);
+		SPI0->SCGC6 |= SPI0_CLOCK_GATING;
 		break;
 	case SPI_1:
-		SPI1->MCR = (SPI1_CLOCK_GATING) &~(SPI_MCR_CONT_SCKE_MASK);
+		SPI1->SCGC6 |= SPI1_CLOCK_GATING;
 		break;
 	case SPI_2:
-		SPI2->MCR = (SPI2_CLOCK_GATING) &~(SPI_MCR_CONT_SCKE_MASK);
+		SPI2->SCGC3 |= SPI2_CLOCK_GATING;
 		break;
+	default:
+		return;
 	}
 }
 
