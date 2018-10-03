@@ -141,7 +141,7 @@ static void SPI_clock_polarity(spi_channel_t channel, spi_polarity_t cpol){
 			break;
 		case SPI_2:
 			if(SPI_HIGH_POLARITY == cpol){
-				  SPI2->CTAR |= SPI_CTAR_CPOL_MASK;
+				  SPI2->CTAR[0]|= SPI_CTAR_CPOL_MASK;
 			}
 			else{
 
