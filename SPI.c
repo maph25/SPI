@@ -58,42 +58,64 @@ static void SPI_clk(spi_channel_t channel){
 
 static void SPI_set_master(spi_channel_t channel, spi_master_t masterOrSlave){
 	switch(channel){
-				case SPI_0:
-					if(SPI_MASTER == masterOrSlave)
-					{
-						SPI0->MCR |= (SPI_MCR_MSTR_MASK); /*MASTER ENABLE*/
-					}else
-					{
-						SPI0->MCR &= ~(SPI_MCR_MSTR_MASK); /*SLAVE ENABLE*/
-					}
-					break;
-				case SPI_1:
-					if(SPI_MASTER == masterOrSlave)
-					{
-						SPI1->MCR |= (SPI_MCR_MSTR_MASK); /*MASTER ENABLE*/
-					}else
-					{
-						SPI1->MCR &= ~(SPI_MCR_MSTR_MASK);/*SLAVE ENABLE*/
-					}
-					break;
-				case SPI_2:
-					if(SPI_MASTER == masterOrSlave)
-					{
-						SPI2->MCR |= (SPI_MCR_MSTR_MASK);/*MASTER ENABLE*/
-					}else
-					{
-						SPI2->MCR &= ~(SPI_MCR_MSTR_MASK);/*SLAVE ENABLE*/
-					}
-					break;
-				default:
-					break;
+		case SPI_0:
+			if(SPI_MASTER == masterOrSlave){
+				SPI0->MCR |= (SPI_MCR_MSTR_MASK); /*MASTER ENABLE*/
 			}
+			else{
+				SPI0->MCR &= ~(SPI_MCR_MSTR_MASK); /*SLAVE ENABLE*/
+			}
+			break;
+		case SPI_1:
+			if(SPI_MASTER == masterOrSlave){
+				SPI1->MCR |= (SPI_MCR_MSTR_MASK); /*MASTER ENABLE*/
+			}
+			else{
+				SPI1->MCR &= ~(SPI_MCR_MSTR_MASK);/*SLAVE ENABLE*/
+			}
+			break;
+		case SPI_2:
+			if(SPI_MASTER == masterOrSlave){
+				SPI2->MCR |= (SPI_MCR_MSTR_MASK);/*MASTER ENABLE*/
+			}
+			else{
+				SPI2->MCR &= ~(SPI_MCR_MSTR_MASK);/*SLAVE ENABLE*/
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 static void SPI_fifo(spi_channel_t channel, spi_enable_fifo_t enableOrDisable){
 	switch(channel){
-
-		}
+		case SPI_0:
+			if(SPI_DISABLE_FIFO == enableOrDisable){
+				SPI0->MCR &= ~SPI_MCR_DIS_TXF_MASK; /*Disable*/
+			}
+			else{
+				SPI0->MCR |= SPI_MCR_DIS_TXF_MASK; /*Enable*/
+			}
+			break;
+		case SPI_1:
+			if(SPI_DISABLE_FIFO == enableOrDisable){
+				SPI1->MCR &= ~SPI_MCR_DIS_TXF_MASK; /*Disable*/
+			}
+			else{
+				SPI1->MCR |= SPI_MCR_DIS_TXF_MASK; /*Enable*/
+			}
+			break;
+		case SPI_2:
+			if(SPI_DISABLE_FIFO == enableOrDisable){
+				SPI2->MCR &= ~SPI_MCR_DIS_TXF_MASK; /*Disable*/
+			}
+			else{
+				SPI2->MCR |= SPI_MCR_DIS_TXF_MASK; /*Enable*/
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 static void SPI_clock_polarity(spi_channel_t channel, spi_polarity_t cpol){
@@ -127,3 +149,4 @@ void SPI_stop_tranference(spi_channel_t channel){
 void SPI_send_one_byte(uint8_t Data){
 
 }
+
