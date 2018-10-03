@@ -70,11 +70,37 @@ static void SPI_set_master(spi_channel_t channel, spi_master_t masterOrSlave){
 		default:
 			break;
 	}
-
 }
 
 static void SPI_fifo(spi_channel_t channel, spi_enable_fifo_t enableOrDisable){
-
+	switch(channel){
+		case SPI_0:
+			if(SPI_ENABLE_FIFO == enableOrDisable){
+				SPI0->MCR &= ~SPI_SR_TXRXS_MASK;
+			}
+			else{
+				SPI0->MCR |= SPI_SR_TXRXS_MASK;
+			}
+			break;
+		case SPI_1:
+			if(SPI_ENABLE_FIFO == enableOrDisable){
+				SPI1->MCR &= ~SPI_SR_TXRXS_MASK;
+			}
+			else{
+				SPI1->MCR |= SPI_SR_TXRXS_MASK;
+			}
+			break;
+		case SPI_2:
+			if(SPI_ENABLE_FIFO == enableOrDisable){
+				SPI2->MCR &= ~SPI_SR_TXRXS_MASK;
+			}
+			else{
+				SPI2->MCR |= SPI_SR_TXRXS_MASK;
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 static void SPI_clock_polarity(spi_channel_t channel, spi_polarity_t cpol){
