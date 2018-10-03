@@ -27,13 +27,13 @@ static void SPI_enable_clock(spi_channel_t channel){
 static void SPI_clk(spi_channel_t channel){
 	switch(channel){
 	case SPI_0:
-		SPI0->SCGC6 |= SPI0_CLOCK_GATING;
+		SIM->SCGC6 |= SPI0_CLOCK_GATING;
 		break;
 	case SPI_1:
-		SPI1->SCGC6 |= SPI1_CLOCK_GATING;
+		SIM->SCGC6 |= SPI1_CLOCK_GATING;
 		break;
 	case SPI_2:
-		SPI2->SCGC3 |= SPI2_CLOCK_GATING;
+		SIM->SCGC3 |= SPI2_CLOCK_GATING;
 		break;
 	default:
 		return;
@@ -96,6 +96,3 @@ void SPI_send_one_byte(uint8_t Data){
 
 }
 
-void SPI_init(const spi_config_t*){
-
-}
