@@ -168,7 +168,7 @@ static void SPI_frame_size(spi_channel_t channel, uint32_t frameSize){
 }
 
 static void SPI_clock_phase(spi_channel_t channel, spi_phase_t cpha){
-switch(channel){
+	switch(channel){
 		case SPI_0:
 			if(SPI_HIGH_PHASE == cpha){
 				SPI0->CTAR[0] |= SPI_CTAR_CPHA_MASK;
@@ -217,7 +217,36 @@ static void SPI_baud_rate(spi_channel_t channel, uint32_t baudRate){
 }
 
 static void SPI_msb_first(spi_channel_t channel, spi_lsb_or_msb_t msb){
+	switch(channel){
+			case SPI_0:
+				if(SPI_MSB == msb){
+					SPI0->CTAR[0] |= SPI_CTAR_LSBFE_MASK;
+				}
+				else{
 
+					  SPI0->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
+				}
+			break;
+			case SPI_1:
+				if(SPI_MSB == msb){
+
+				  SPI1->CTAR[0] |= SPI_CTAR_LSBFE_MASK;
+				}
+				else{
+
+				  SPI1->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
+				}
+			break;
+			case SPI_2:
+				if(SPI_MSB == msb){
+				  SPI2->CTAR[0] |= SPI_CTAR_LSBFE_MASK;
+				}
+				else{
+				  SPI2->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
+				}
+			break;
+
+		}
 }
 
 void SPI_start_tranference(spi_channel_t channel){
@@ -249,4 +278,3 @@ void SPI_stop_tranference(spi_channel_t channel){
 void SPI_send_one_byte(uint8_t Data){
 
 }
-
