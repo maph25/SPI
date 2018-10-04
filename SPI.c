@@ -202,17 +202,17 @@ static void SPI_clock_phase(spi_channel_t channel, spi_phase_t cpha){
 
 static void SPI_baud_rate(spi_channel_t channel, uint32_t baudRate){
 	switch(channel){
-		case SPI_0:
-			SPI0->CTAR[0] |= baudRate;
-		break;
-		case SPI_1:
-			SPI1->CTAR[0] |= baudRate;
-		break;
-		case SPI_2:
-			SPI2->CTAR[0] |= baudRate;
-		break;
-		default:
-		break;
+			case SPI_0:
+				SPI0->CTAR[0] |= baudRate;
+				break;
+			case SPI_1:
+				SPI1->CTAR[0] |= baudRate;
+				break;
+			case SPI_2:
+				SPI2->CTAR[0] |= baudRate;
+				break;
+			default:
+				break;
 	}
 }
 
@@ -223,17 +223,14 @@ static void SPI_msb_first(spi_channel_t channel, spi_lsb_or_msb_t msb){
 					SPI0->CTAR[0] |= SPI_CTAR_LSBFE_MASK;
 				}
 				else{
-
-					  SPI0->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
+					SPI0->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
 				}
 			break;
 			case SPI_1:
 				if(SPI_MSB == msb){
-
 				  SPI1->CTAR[0] |= SPI_CTAR_LSBFE_MASK;
 				}
 				else{
-
 				  SPI1->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
 				}
 			break;
@@ -245,7 +242,6 @@ static void SPI_msb_first(spi_channel_t channel, spi_lsb_or_msb_t msb){
 				  SPI2->CTAR[0] &= ~(SPI_CTAR_LSBFE_MASK);
 				}
 			break;
-
 		}
 }
 
@@ -272,7 +268,19 @@ void SPI_start_tranference(spi_channel_t channel){
 }
 
 void SPI_stop_tranference(spi_channel_t channel){
-
+	switch(channel){
+		case SPI_0:
+			SPI0->MCR |= SPI_MCR_HALT_MASK;
+			break;
+		case SPI_1:
+			SPI1->MCR |= SPI_MCR_HALT_MASK;;
+			break;
+		case SPI_2:
+			SPI2->MCR |= SPI_MCR_HALT_MASK;
+			break;
+		default:
+			break;
+		}
 }
 
 /*A read access of PUSHR returns the topmost TX FIFO entry.*/
@@ -303,20 +311,15 @@ void SPI_send_one_byte(spi_channel_t channel, uint8_t Data){
 }
 
 void SPI_init(const spi_config_t* SPI_config){
-	SPI_clk(SPI_config->SPI_Channel);
+	SPI_clk(SPI_config->SPI_channel);
 	GPIO_clockGating(SPI_config->GPIOForSPI.GPIO_portName);
 	GPIO_pinControlRegister(SPI_config->GPIOForSPI.GPIO_portName, SPI_config->GPIOForSPI.SPI_clk, &(SPI_config->pinConttrolRegisterPORTD));
 	GPIO_pinControlRegister(SPI_config->GPIOForSPI.GPIO_portName, SPI_config->GPIOForSPI.SPI_Sout, &(SPI_config->pinConttrolRegisterPORTD));
 	SPI_setMaster(SPI_config->SPI_Channel, SPI_config->SPI_Master);
 	SPI_fIFO(SPI_config->SPI_Channel, SPI_config->SPI_EnableFIFO);
-	SPI_enable_clk(SPI_config->SPI_Channel);
+	SPI_enable_clock(SPI_config->SPI_Channel);
 	SPI_clockPolarity(SPI_config->SPI_Channel, SPI_config->SPI_Polarity);
 	SPI_frameSize(SPI_config->SPI_Channel, SPI_config->frameSize);
 	SPI_clockPhase(SPI_config->SPI_Channel, SPI_config->SPI_Phase);
 	SPI_baudRate(SPI_config->SPI_Channel, SPI_config->baudrate);
-
-
-
-
 }
-
