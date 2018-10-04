@@ -47,7 +47,7 @@ int main(void)
 {
 	uint8_t string1[]="ITESO"; /*! String to be printed in the LCD*/
 	uint8_t string2[]="uMs y DSPs"; /*! String to be printed in the LCD*/
-//	SPI_init(&g_spi_config); /*! Configuration function for the LCD port*/
+	SPI_init(&g_spi_config); /*! Configuration function for the LCD port*/
 	LCD_nokia_init(); /*! Configuration function for the LCD */
 
 		for(;;) {	  

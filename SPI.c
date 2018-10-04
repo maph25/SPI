@@ -91,7 +91,7 @@ static void SPI_set_master(spi_channel_t channel, spi_master_t masterOrSlave){
 static void SPI_fifo(spi_channel_t channel, spi_enable_fifo_t enableOrDisable){
 	switch(channel){
 		case SPI_0:
-			if(SPI_DISABLE_FIFO == enableOrDisable){
+			if(SPI_ENABLE_FIFO == enableOrDisable){
 				SPI0->MCR &= ~SPI_MCR_DIS_TXF_MASK; /*Disable*/
 			}
 			else{
@@ -99,7 +99,7 @@ static void SPI_fifo(spi_channel_t channel, spi_enable_fifo_t enableOrDisable){
 			}
 			break;
 		case SPI_1:
-			if(SPI_DISABLE_FIFO == enableOrDisable){
+			if(SPI_ENABLE_FIFO == enableOrDisable){
 				SPI1->MCR &= ~SPI_MCR_DIS_TXF_MASK; /*Disable*/
 			}
 			else{
@@ -107,7 +107,7 @@ static void SPI_fifo(spi_channel_t channel, spi_enable_fifo_t enableOrDisable){
 			}
 			break;
 		case SPI_2:
-			if(SPI_DISABLE_FIFO == enableOrDisable){
+			if(SPI_ENABLE_FIFO == enableOrDisable){
 				SPI2->MCR &= ~SPI_MCR_DIS_TXF_MASK; /*Disable*/
 			}
 			else{
@@ -253,19 +253,16 @@ static void SPI_msb_first(spi_channel_t channel, spi_lsb_or_msb_t msb){
 void SPI_start_tranference(spi_channel_t channel){
 	switch(channel){
 		case SPI_0:
-			SPI0->MCR &= ~SPI_MCR_FRZ_MASK;
+
 			SPI0->MCR &= ~SPI_MCR_HALT_MASK;
-			SPI0->SR |= SPI_SR_EOQF_MASK;
+
 			break;
 		case SPI_1:
-			SPI1->MCR &= ~SPI_MCR_FRZ_MASK;
 			SPI1->MCR &= ~SPI_MCR_HALT_MASK;
-			SPI1->SR |= SPI_SR_EOQF_MASK;
 			break;
 		case SPI_2:
-			SPI2->MCR &= ~SPI_MCR_FRZ_MASK;
 			SPI2->MCR &= ~SPI_MCR_HALT_MASK;
-			SPI2->SR |= SPI_SR_EOQF_MASK;
+
 			break;
 		default:
 			break;
@@ -273,6 +270,19 @@ void SPI_start_tranference(spi_channel_t channel){
 }
 
 void SPI_stop_tranference(spi_channel_t channel){
+	switch(channel){
+		case SPI_0:
+			SPI0->SR |= SPI_MCR_HALT_MASK;
+			break;
+		case SPI_1:
+			SPI1->SR |= SPI_MCR_HALT_MASK;
+			break;
+		case SPI_2:
+			SPI2->SR |= SPI_MCR_HALT_MASK;
+			break;
+		default:
+			break;
+	}
 
 }
 

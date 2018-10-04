@@ -4,6 +4,7 @@
 #define SPI_H_
 #include <MK64F12.h>
 #include "stdint.h"
+#include "Bits.h"
 #include "GPIO.h"
 
 
