@@ -311,15 +311,15 @@ void SPI_send_one_byte(spi_channel_t channel, uint8_t Data){
 }
 
 void SPI_init(const spi_config_t* SPI_config){
-	SPI_clk(SPI_config->SPI_channel);
-	GPIO_clockGating(SPI_config->GPIOForSPI.GPIO_portName);
-	GPIO_pinControlRegister(SPI_config->GPIOForSPI.GPIO_portName, SPI_config->GPIOForSPI.SPI_clk, &(SPI_config->pinConttrolRegisterPORTD));
-	GPIO_pinControlRegister(SPI_config->GPIOForSPI.GPIO_portName, SPI_config->GPIOForSPI.SPI_Sout, &(SPI_config->pinConttrolRegisterPORTD));
-	SPI_setMaster(SPI_config->SPI_Channel, SPI_config->SPI_Master);
-	SPI_fIFO(SPI_config->SPI_Channel, SPI_config->SPI_EnableFIFO);
-	SPI_enable_clock(SPI_config->SPI_Channel);
-	SPI_clockPolarity(SPI_config->SPI_Channel, SPI_config->SPI_Polarity);
-	SPI_frameSize(SPI_config->SPI_Channel, SPI_config->frameSize);
-	SPI_clockPhase(SPI_config->SPI_Channel, SPI_config->SPI_Phase);
-	SPI_baudRate(SPI_config->SPI_Channel, SPI_config->baudrate);
+	SPI_clk(SPI_config->spi_channel);
+	GPIO_clock_gating(SPI_config->spi_gpio_port.gpio_port_name);
+	GPIO_pin_control_register(SPI_config->spi_gpio_port.gpio_port_name, SPI_config->spi_gpio_port.spi_clk, &(SPI_config->pinConttrolRegisterPORTD));
+	GPIO_pin_control_register(SPI_config->spi_gpio_port.gpio_port_name, SPI_config->spi_gpio_port.spi_sout, &(SPI_config->pinConttrolRegisterPORTD));
+	SPI_set_master(SPI_config->spi_channel, SPI_config->spi_master);
+	SPI_fifo(SPI_config->spi_channel, SPI_config->spi_enable_fifo);
+	SPI_enable_clock(SPI_config->spi_channel);
+	SPI_clock_polarity(SPI_config->spi_channel, SPI_config->spi_polarity);
+	SPI_frame_size(SPI_config->spi_channel, SPI_config->spi_frame_size);
+	SPI_clock_phase(SPI_config->spi_channel, SPI_config->spi_phase);
+	SPI_baud_rate(SPI_config->spi_channel, SPI_config->spi_baudrate);
 }
