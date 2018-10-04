@@ -8,13 +8,14 @@
 		DC-PTD3
 		DIN-PTD2
 		CLK-PTD1
-  	\Created on: 02/OCT/2018
-   	\Author:  Andrea Perez ie698276@iteso.mx & Fernanda Muñoz ie701371@iteso.mx
+	\author J. Luis Pizano Escalante, luispizano@iteso.mx
+	\date	25/09/2018
 	\todo
 	    The SPI device driver needs to be completed.
  */
 
  
+#include <SPI.h>
 #include <SPI.h>
 
 #include "GPIO.h"
@@ -46,7 +47,7 @@ int main(void)
 {
 	uint8_t string1[]="ITESO"; /*! String to be printed in the LCD*/
 	uint8_t string2[]="uMs y DSPs"; /*! String to be printed in the LCD*/
-	SPI_init(&g_spi_config); /*! Configuration function for the LCD port*/
+//	SPI_init(&g_spi_config); /*! Configuration function for the LCD port*/
 	LCD_nokia_init(); /*! Configuration function for the LCD */
 
 		for(;;) {	  

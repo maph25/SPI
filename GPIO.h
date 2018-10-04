@@ -94,7 +94,6 @@ typedef const uint32_t gpio_pin_control_register_t;
 /********************************************************************************************/
 /*!
  	 \brief	 This function clears all interrupts that were sensed by the GPIO.
-
  	 \param[in]  portName Port to clear interrupts.
  	 \return void
  	 */
@@ -106,7 +105,6 @@ void GPIO_clear_interrupt(gpio_port_name_t portName);
 /*!
  	 \brief	 This function enables the GPIO clock by configuring the corresponding bit
  	 	 and register in the System Clock Gating Control Register.
-
  	 \param[in]  portName Port to be configured.
  	 \return 1 if the portName is valid else return 0
  */
@@ -136,7 +134,6 @@ uint8_t GPIO_pin_control_register(gpio_port_name_t portName, uint8_t pin, gpio_p
  	 \param[in] portName Port to configure
  	 \param[in] direction Input value to specify the port as input or output.
  	 \return void
-
  */
 void GPIO_data_directionPORT(gpio_port_name_t portName, uint32_t direction);
 /********************************************************************************************/
@@ -157,7 +154,6 @@ void GPIO_data_direction_pin(gpio_port_name_t portName, uint8_t state, uint8_t p
  	 \brief	 This function reads all the GPIO port.
  	 \param[in] portName Port to be read.
  	 \return  It is the value read from a GPIO. It is a 32-bit value.
-
  */
 uint32_t GPIO_read_port(gpio_port_name_t portName);
 /********************************************************************************************/
@@ -212,4 +208,3 @@ void GPIO_clear_pin(gpio_port_name_t portName, uint8_t pin);
 void GPIO_tooglePIN(gpio_port_name_t portName, uint8_t pin);
 
 #endif /* GPIO_H_ */
-

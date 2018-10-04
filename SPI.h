@@ -1,10 +1,5 @@
-/*
- * SPI.h
- *
- *	\author Andrea Perez ie698276@iteso.mx & Fernanda Muñoz ie701371@iteso.mx
- *  \date	02/OCT/2018
- *
- */
+
+
 #ifndef SPI_H_
 #define SPI_H_
 #include <MK64F12.h>
@@ -100,9 +95,9 @@ typedef struct
 
 
 /*it enable the clock module of the SPI by modifying the MDIS bits*/
-static void SPI_enable_clock(spi_channel_t channel);
+static void SPI_enable_clk(spi_channel_t);
 /*It activate the clock gating*/
-static void SPI_clk(spi_channel_t channel);
+static void SPI_clk(spi_channel_t);
 /*It configure the SPI as a master or slave depending on the value of masterOrslave*/
 static void SPI_set_master(spi_channel_t channel, spi_master_t masterOrSlave);
 /*It activate the TX and RX FIFOs of the SPI depending on the value of enableOrdisable*/
@@ -122,7 +117,7 @@ void SPI_start_tranference(spi_channel_t channel);
 /*It stops the SPI transmission by modifying the value of HALT bit*/
 void SPI_stop_tranference(spi_channel_t channel);
 /*It transmits the information contained in data*/
-void SPI_send_one_byte(spi_channel_t channel, uint8_t data);
+void SPI_send_one_byte(spi_channel_t channel, uint8_t Data);
 /*It configures the SPI for transmission, this function as arguments receives a pointer to a constant structure where are all 
  * the configuration parameters*/
 void SPI_init(const spi_config_t*);

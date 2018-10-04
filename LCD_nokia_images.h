@@ -1,8 +1,8 @@
 /*
  * LCD_nokia_images.h
  *
- *  Created on: 10/OCT/2018
- *  Author:  Andrea Perez ie698276@iteso.mx & Fernanda Muñoz ie701371@iteso.mx
+ *  Created on: 25/09/2018
+ *      Author: jlpe
  */
 
 #ifndef LCD_NOKIA_IMAGES_H_
