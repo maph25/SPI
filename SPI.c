@@ -202,17 +202,17 @@ switch(channel){
 
 static void SPI_baud_rate(spi_channel_t channel, uint32_t baudRate){
 	switch(channel){
-			case SPI_0:
-				SPI0->CTAR[0] |= baudRate;
-				break;
-			case SPI_1:
-				SPI1->CTAR[0] |= baudRate;
-				break;
-			case SPI_2:
-				SPI2->CTAR[0] |= baudRate;
-				break;
-			default:
-				break;
+		case SPI_0:
+			SPI0->CTAR[0] |= baudRate;
+		break;
+		case SPI_1:
+			SPI1->CTAR[0] |= baudRate;
+		break;
+		case SPI_2:
+			SPI2->CTAR[0] |= baudRate;
+		break;
+		default:
+		break;
 	}
 }
 
