@@ -168,7 +168,36 @@ static void SPI_frame_size(spi_channel_t channel, uint32_t frameSize){
 }
 
 static void SPI_clock_phase(spi_channel_t channel, spi_phase_t cpha){
+switch(channel){
+		case SPI_0:
+			if(SPI_HIGH_PHASE == cpha){
+				SPI0->CTAR[0] |= SPI_CTAR_CPHA_MASK;
+			}
+			else{
 
+				  SPI0->CTAR[0] &= ~(SPI_CTAR_CPHA_MASK);
+			}
+		break;
+		case SPI_1:
+			if(SPI_HIGH_PHASE == cpha){
+
+			  SPI1->CTAR[0] |= SPI_CTAR_CPHA_MASK;
+			}
+			else{
+
+			  SPI1->CTAR[0] &= ~(SPI_CTAR_CPHA_MASK);
+			}
+		break;
+		case SPI_2:
+			if(SPI_HIGH_PHASE == cpha){
+			  SPI2->CTAR[0] |= SPI_CTAR_CPHA_MASK;
+			}
+			else{
+			  SPI2->CTAR[0] &= ~(SPI_CTAR_CPHA_MASK);
+			}
+		break;
+
+	}
 }
 
 static void SPI_baud_rate(spi_channel_t channel, uint32_t baudRate){
