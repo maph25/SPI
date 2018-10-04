@@ -172,7 +172,19 @@ static void SPI_clock_phase(spi_channel_t channel, spi_phase_t cpha){
 }
 
 static void SPI_baud_rate(spi_channel_t channel, uint32_t baudRate){
-
+	switch(channel){
+			case SPI_0:
+				SPI0->CTAR[0] |= baudRate;
+				break;
+			case SPI_1:
+				SPI1->CTAR[0] |= baudRate;
+				break;
+			case SPI_2:
+				SPI2->CTAR[0] |= baudRate;
+				break;
+			default:
+				break;
+	}
 }
 
 static void SPI_msb_first(spi_channel_t channel, spi_lsb_or_msb_t msb){
