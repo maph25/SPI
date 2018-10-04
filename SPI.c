@@ -275,6 +275,48 @@ void SPI_stop_tranference(spi_channel_t channel){
 
 }
 
-void SPI_send_one_byte(uint8_t Data){
+/*A read access of PUSHR returns the topmost TX FIFO entry.*/
+void SPI_send_one_byte(spi_channel_t channel, uint8_t Data){
+	switch(channel)
+		{
+			case SPI_0 :
+				SPI0->PUSHR = (Data);
+				while(0 == (SPI0->SR & SPI_SR_TCF_MASK));
+				SPI0->SR |= SPI_SR_TCF_MASK;
+				break;
+
+			case SPI_1 :
+				SPI1->PUSHR = (Data);
+				while(0 == (SPI1->SR & SPI_SR_TCF_MASK));
+				SPI1->SR |= SPI_SR_TCF_MASK;
+				break;
+
+			case SPI_2 :
+				SPI2->PUSHR = (Data);
+				while(0 == (SPI2->SR & SPI_SR_TCF_MASK));
+				SPI2->SR |= SPI_SR_TCF_MASK;
+			  break;
+
+			default:
+				  return;
+		}
+}
+
+void SPI_init(const spi_config_t* SPI_config){
+	SPI_clk(SPI_config->SPI_Channel);
+	GPIO_clockGating(SPI_config->GPIOForSPI.GPIO_portName);
+	GPIO_pinControlRegister(SPI_config->GPIOForSPI.GPIO_portName, SPI_config->GPIOForSPI.SPI_clk, &(SPI_config->pinConttrolRegisterPORTD));
+	GPIO_pinControlRegister(SPI_config->GPIOForSPI.GPIO_portName, SPI_config->GPIOForSPI.SPI_Sout, &(SPI_config->pinConttrolRegisterPORTD));
+	SPI_setMaster(SPI_config->SPI_Channel, SPI_config->SPI_Master);
+	SPI_fIFO(SPI_config->SPI_Channel, SPI_config->SPI_EnableFIFO);
+	SPI_enable_clk(SPI_config->SPI_Channel);
+	SPI_clockPolarity(SPI_config->SPI_Channel, SPI_config->SPI_Polarity);
+	SPI_frameSize(SPI_config->SPI_Channel, SPI_config->frameSize);
+	SPI_clockPhase(SPI_config->SPI_Channel, SPI_config->SPI_Phase);
+	SPI_baudRate(SPI_config->SPI_Channel, SPI_config->baudrate);
+
+
+
 
 }
+
