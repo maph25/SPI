@@ -313,8 +313,8 @@ void SPI_send_one_byte(spi_channel_t channel, uint8_t Data){
 void SPI_init(const spi_config_t* SPI_config){
 	SPI_clk(SPI_config->spi_channel);
 	GPIO_clock_gating(SPI_config->spi_gpio_port.gpio_port_name);
-	GPIO_pin_control_register(SPI_config->spi_gpio_port.gpio_port_name, SPI_config->spi_gpio_port.spi_clk, &(SPI_config->pinConttrolRegisterPORTD));
-	GPIO_pin_control_register(SPI_config->spi_gpio_port.gpio_port_name, SPI_config->spi_gpio_port.spi_sout, &(SPI_config->pinConttrolRegisterPORTD));
+	GPIO_pin_control_register(SPI_config->spi_gpio_port.gpio_port_name, SPI_config->spi_gpio_port.spi_clk, &(SPI_config->spi_gpio_port.gpio_port_name(GPIO_D)));
+	GPIO_pin_control_register(SPI_config->spi_gpio_port.gpio_port_name, SPI_config->spi_gpio_port.spi_sout, &(SPI_config->spi_gpio_port.gpio_port_name(GPIO_D)));
 	SPI_set_master(SPI_config->spi_channel, SPI_config->spi_master);
 	SPI_fifo(SPI_config->spi_channel, SPI_config->spi_enable_fifo);
 	SPI_enable_clock(SPI_config->spi_channel);
