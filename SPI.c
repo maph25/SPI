@@ -313,10 +313,6 @@ void SPI_send_one_byte(spi_channel_t channel, uint8_t Data){
 		}
 }
 
-
-
-
-
 void SPI_init(const spi_config_t* spi_config)
 {
  gpio_pin_control_register_t enable_bit = GPIO_MUX1;
@@ -326,7 +322,7 @@ void SPI_init(const spi_config_t* spi_config)
  GPIO_pin_control_register(spi_config->spi_gpio_port.gpio_port_name ,spi_config->spi_gpio_port.spi_sout ,&(spi_config->pin_config));
  SPI_set_master(spi_config->spi_channel,spi_config->spi_master);
  SPI_fifo(spi_config->spi_channel, spi_config->spi_enable_fifo);
- SPI_enable_clk(spi_config->spi_channel);
+ SPI_enable(spi_config->spi_channel);
  SPI_clock_polarity(spi_config->spi_channel, spi_config->spi_polarity);
  SPI_frame_size(spi_config->spi_channel,spi_config->spi_frame_size);
  SPI_clock_phase(spi_config->spi_channel, spi_config->spi_phase);
@@ -337,6 +333,3 @@ void SPI_init(const spi_config_t* spi_config)
  GPIO_set_pin(GPIO_D, bit_4);
  GPIO_data_direction_pin(GPIO_D, GPIO_OUTPUT, bit_4);
 }
-
-
-
